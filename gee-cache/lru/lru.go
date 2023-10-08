@@ -40,6 +40,7 @@ func New(maxBytes int64, onEvicted func(string, Value)) *Cache {
 func (c *Cache) Get(key string) (value Value, ok bool) {
 	if ele, ok := c.cache[key]; ok {
 		c.ll.MoveToFront(ele)
+		// type convention
 		kv := ele.Value.(*entry)
 		return kv.value, true
 	}
